@@ -131,6 +131,7 @@
                                 })).then(function (response) {
                                     return response.json();
                                 }).then(function (data) {
+                                    console.log(data);
                                     //if there is errors with captcha
                                     if(!data.success) {
                                         alert(data.errorMsg);
