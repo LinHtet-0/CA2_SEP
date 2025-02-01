@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1f25;
+            --accent-color: #d4af37;
+            --bg-color: #f8f9fa;
+            --text-dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+        }
+
+        .page-top {
+            background: var(--primary-color);
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .page-top h2 {
+            color: white;
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .section-title {
+            color: var(--text-dark);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .promotion-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .promotion-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .promotion-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .promotion-card .content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .promotion-card p {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .alert-danger {
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .promotion-card img {
+                height: 300px;
+            }
+            
+            .page-top h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="../checkCountry.js"></script>
+    <script src="../../header.js"></script>
+    <script src="menu2.js"></script>
+
+    <div role="main" class="main">
+        <section class="page-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Promotions</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="promotionsContainer" class="container">
+            <div id="promotionsContent">
+                <h3 class="section-title">Featured Collections</h3>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-6">
+                        <div class="promotion-card">
+                            <a href="furnitureProductDetails.html?sku=F_SC_40">
+                                <img src="../../img/promotions/F_SC_402014-12-06.jpg" alt="Promotion for Sofas and Chairs">
+                                <div class="content">
+                                    <p>Discover Our Premium Sofas & Chairs Collection</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="promotion-card">
+                            <a href="furnitureProductDetails.html?sku=F_BM_21">
+                                <img src="../../img/promotions/F_BM_212014-11-24.jpg" alt="Promotion for Beds and Mattresses">
+                                <div class="content">
+                                    <p>Experience Luxury Sleep with Our Bed Collection</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">Special Offers</h3>
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="promotion-card">
+                            <a href="furnitureProductDetails.html?sku=F_CH_73">
+                                <img src="../../img/promotions/F_CH_73.jpg" alt="Designer Chair Collection">
+                                <div class="content">
+                                    <p>Explore Our Signature Chair Collection</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="errorContainer" class="container text-center" style="display: none;">
+            <p id="errorMessage" class="alert alert-danger"></p>
+        </div>
+    </div>
+
+    <script src="../footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const promotionsAvailable = true;
+        const promotionsContainer = document.getElementById("promotionsContainer");
+        const promotionsContent = document.getElementById("promotionsContent");
+        const errorContainer = document.getElementById("errorContainer");
+        const errorMessage = document.getElementById("errorMessage");
+
+        if (!promotionsAvailable) {
+            promotionsContent.style.display = "none";
+            errorMessage.textContent = "No promotions are currently available. Please check back later.";
+            errorContainer.style.display = "block";
+        }
+
+        document.querySelectorAll(".promotion-card a").forEach(link => {
+            link.addEventListener("click", event => {
+                event.preventDefault();
+                const targetUrl = event.currentTarget.getAttribute("href");
+                const pageLoadSuccessful = Math.random() > 0.2;
+                if (pageLoadSuccessful) {
+                    window.location.href = targetUrl;
+                } else {
+                    errorMessage.textContent = "Unable to load furniture details. Please try again later.";
+                    errorContainer.style.display = "block";
+                }
+            });
+        });
+
+        window.addEventListener("error", () => {
+            promotionsContent.style.display = "none";
+            errorMessage.textContent = "Unable to load promotions. Please try again later.";
+            errorContainer.style.display = "block";
+        });
+    </script>
+</body>
+</html>
