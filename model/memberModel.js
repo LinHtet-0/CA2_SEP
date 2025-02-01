@@ -315,17 +315,17 @@ var memberDB = {
                     return reject(err);
                 }
                 else {
-                    var email = details.email;
-                    var name = details.name;
-                    var phone = details.phone;
-                    var country = details.country;
-                    var address = details.address;
-                    var securityQuestion = details.securityQuestion;
-                    var securityAnswer = details.securityAnswer;
-                    var age = details.age;
-                    var income = details.income;
-                    var sla = details.sla;
-                    var password = details.password;
+                    var email = details.email || null;
+                    var name = details.name || null;
+                    var phone = details.phone || null;
+                    var country = details.country || null;
+                    var address = details.address || null;
+                    var securityQuestion = details.securityQuestion || null;
+                    var securityAnswer = details.securityAnswer || null;
+                    var age = details.age || null;
+                    var income = details.income || null;
+                    var sla = details.sla || null;
+                    var password = details.password || null;
                     if(password == null || password == '') {
                         var sql = 'UPDATE memberentity SET NAME=?, PHONE=?, CITY=?, ADDRESS=?, SECURITYQUESTION=?,'
                         + 'SECURITYANSWER=?, AGE=?, INCOME=?, SERVICELEVELAGREEMENT=? WHERE EMAIL=?';
