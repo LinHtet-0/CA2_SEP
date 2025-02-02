@@ -24,9 +24,9 @@ document.write('\
                     </div>\
                     <form id="newsletterForm" onsubmit="return false;">\
                         <div class="input-group">\
-                            <input class="form-control" placeholder="Email Address" id="newsletterEmail" type="email" required>\
+                            <input class="form-control" placeholder="Email Address" id="newsletterEmail" type="email" >\
                             <span class="input-group-btn">\
-                                <button class="btn btn-default" type="submit" onclick="addToSubscription()">Go!</button>\
+                                <button class="btn btn-default"  onclick="addToSubscription()">Go!</button>\
                             </span>\
                         </div>\
                     </form>\
